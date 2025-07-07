@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Face Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Face Verification</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label>Image 1:
+                <input type="file" name="img1" required>
+            </label>
+            <label>Image 2:
+                <input type="file" name="img2" required>
+            </label>
+            <button type="submit">Compare</button>
+        </form>
+
+        {% if result %}
+            <h2>Result: {{ result }}</h2>
+            <p class="score">Similarity score: {{ '%.3f' % score }}</p>
+
+            <h3>Uploaded Images:</h3>
+            <div class="images">
+                <img src="{{ img1_url }}" alt="Image 1">
+                <img src="{{ img2_url }}" alt="Image 2">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
